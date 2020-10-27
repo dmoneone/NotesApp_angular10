@@ -74,4 +74,8 @@ export class NotesComponent implements OnInit {
     public navigateToNote(id: string): void {
         this.router.navigate([`notes/${id}`]);
     }
+
+    trackByFn(index, item): void {
+        return item?.id || index;
+    }
 }

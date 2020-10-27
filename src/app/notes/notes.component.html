@@ -5,7 +5,7 @@
             <mat-label>Type a note title</mat-label>
             <input [formControlName]="FORM_NEW_NOTE_TITLE" matInput type="text">
             <span mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearField(FORM_NEW_NOTE_TITLE)">
-                <mat-icon>close</mat-icon>
+                <mat-icon class="cursor-pointer">close</mat-icon>
             </span>
         </mat-form-field>
 
@@ -13,7 +13,7 @@
             <mat-label>Type a note description</mat-label>
             <input [formControlName]="FORM_NEW_NOTE_DESCR" matInput type="text">
             <span mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearField(FORM_NEW_NOTE_TITLE)">
-                <mat-icon>close</mat-icon>
+                <mat-icon class="cursor-pointer">close</mat-icon>
             </span>
         </mat-form-field>
 
@@ -21,9 +21,10 @@
     </form>
 
     <h2>Your notes: </h2>
-    <mat-list role="list">
-        <mat-list-item class="note-item" *ngFor="let note of notes" role="listitem" (click)="navigateToNote(note.id)">
+    <mat-list role="list" *ngIf="notes.length; else noItems">
+        <mat-list-item class="note-item" *ngFor="let note of notes; trackBy: trackByFn" role="listitem" (click)="navigateToNote(note.id)">
             <p>{{ note.title }}</p>
         </mat-list-item>
     </mat-list>
+    <ng-template #noItems>No items</ng-template>
 </div>
