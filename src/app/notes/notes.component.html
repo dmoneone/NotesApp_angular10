@@ -1,0 +1,29 @@
+<div>
+    <h1>Notes App</h1>
+    <form class="form" [formGroup]="formGroup" (ngSubmit)="createNote()">
+        <mat-form-field class="form-field">
+            <mat-label>Type a note title</mat-label>
+            <input [formControlName]="FORM_NEW_NOTE_TITLE" matInput type="text">
+            <span mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearField(FORM_NEW_NOTE_TITLE)">
+                <mat-icon>close</mat-icon>
+            </span>
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+            <mat-label>Type a note description</mat-label>
+            <input [formControlName]="FORM_NEW_NOTE_DESCR" matInput type="text">
+            <span mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearField(FORM_NEW_NOTE_TITLE)">
+                <mat-icon>close</mat-icon>
+            </span>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary">Create!</button>
+    </form>
+
+    <h2>Your notes: </h2>
+    <mat-list role="list">
+        <mat-list-item class="note-item" *ngFor="let note of notes" role="listitem" (click)="navigateToNote(note.id)">
+            <p>{{ note.title }}</p>
+        </mat-list-item>
+    </mat-list>
+</div>
